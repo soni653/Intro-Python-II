@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -13,7 +14,7 @@ passages run north and east."""),
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from westdave
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
@@ -38,14 +39,51 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+#player_name = input("What is your name?\n")
+
+#player = player(player_name, room['outside'])
+
+#print(f"\n\nHello {player.name}!\n")
+
+player = Player("Prapti", room["outside"])
 
 # Write a loop that:
 #
 # * Prints the current room name
+
+print(player.room.name)
+
 # * Prints the current description (the textwrap module might be useful here).
+
+print(player.room.description)
+
 # * Waits for user input and decides what to do.
+
+userInput = input('Input a movement direction (n,w,s,e) press "q" to quit ')
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while userInput != 'q':
+
+
+    if(userInput not in ['n', 'w', 's', 'e', 'q']):
+
+        userInput = input('please enter valid input press "q" to quit ')
+
+    elif(not hasattr(player.room, f'{userInput}_to') and userInput != 'q'):
+
+        print(userInput)
+        userInput = input('you cannot move in that direction: Choose another press "q" to quit ')
+
+    elif(userInput != 'q'):
+
+        player.room = getattr(player.room, f'{userInput}_to')
+        print(player.room.name)
+        print(player.room.description)
+
+        userInput = input('Input a movement direction (n,w,s,e) press "q" to quit ')
+
+print('done')
