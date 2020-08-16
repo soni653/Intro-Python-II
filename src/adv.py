@@ -30,14 +30,14 @@ earlier adventurers. The only exit is to the south.""",Item('empty chest')),
 
 # Link rooms together
 
-# room['outside'].n_to = room['foyer']
-# room['foyer'].s_to = room['outside']
-# room['foyer'].n_to = room['overlook']
-# room['foyer'].e_to = room['narrow']
-# room['overlook'].s_to = room['foyer']
-# room['narrow'].w_to = room['foyer']
-# room['narrow'].n_to = room['treasure']
-# room['treasure'].s_to = room['narrow']
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
 
 #
 # Main
@@ -53,15 +53,13 @@ print(f"\n\nHello {player.name}!\n")
 #
 # * Prints the current room name
 
-print(player.room.name)
+# print(player.room.room_name)
 
-# * Prints the current description (the textwrap module might be useful here).
+# # * Prints the current description (the textwrap module might be useful here).
+# print(player.room.room_description)
+# print(player.room.item)
 
-print(player.room.name)
-print(player.room.description)
-print(player.room.items)
-
-# * Waits for user input and decides what to do.
+# # * Waits for user input and decides what to do.
 #Create dictionary of items
 
 
@@ -87,12 +85,10 @@ while True:
     print(f"{current_room.room_description}\n")
     print(f"You have found a {room_inventory}\n")
     print(f"If you would like to take an item, type: take item_name\n")
-    print(f"If you would like to drop an item, type: drop item_name\n")
 
     print(f"{player_name} has {len(player.inventory)} item(s) in there backpack\n")
     print(f"Backpack contents: {player_inventory}\n")
-    print(f"you are in the {player.room.room_name} room \n")
-    print(f"{current_room.room_description}\n\n")
+
     move = input(
         'Choose a direction to move. You can choose n,s,e,w or q if you want to quit: ')
 
